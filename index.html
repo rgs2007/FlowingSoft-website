@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowing Soft - AI-Powered Consulting & Training Services</title>
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            line-height: 1.75;
+            scroll-behavior: smooth;
+            padding-top: 70px;
+        }
+        header {
+            background-color: #003399;
+            color: #fff;
+            padding: 15px;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            top: 0;
+        }
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        header nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 1em;
+        }
+        header nav .language-buttons {
+            display: flex;
+            gap: 5px;
+        }
+        header nav button {
+            background-color: #fff;
+            color: #003399;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.9em;
+        }
+        .hero-section {
+            background: url('images/hero_background.jpg') center/cover no-repeat;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .hero-section h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        .hero-section .cta-button {
+            padding: 15px 30px;
+            background-color: #ff9900;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1em;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        .section {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 20px;
+            margin: 20px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section h1, .section h2 {
+            font-size: 2.5em;
+            margin: 20px 0;
+            line-height: 1.4;
+        }
+        .section p {
+            font-size: 1.1em;
+            max-width: 750px;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        .services-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .service-card {
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        .service-card img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+        #about {
+            background: linear-gradient(to bottom, #f4f4f4, #fff);
+        }
+        #contact {
+            background-color: #003399;
+            color: #fff;
+            padding: 50px 20px;
+        }
+        .parallax {
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+        }
+        #services-parallax {
+            background-image: url('images/services_image.png');
+        }
+        .image-container {
+            width: 100%;
+            max-width: 550px;
+            margin: 20px;
+        }
+        .image-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .content-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .content-container .text {
+            max-width: 600px;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 20px;
+        }
+        header img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        @media (max-width: 1024px) {
+            .section h1, .section h2 {
+                font-size: 2.2em;
+            }
+            .section p {
+                font-size: 1em;
+            }
+            .content-container {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        @media (max-width: 768px) {
+            header nav a {
+                font-size: 0.9em;
+            }
+            .section h1, .section h2 {
+                font-size: 1.8em;
+            }
+            .section p {
+                font-size: 0.95em;
+            }
+            header nav {
+                flex-direction: column;
+                text-align: center;
+            }
+            header nav button {
+                padding: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div>
+                <img src="flowing_soft_logo.png" alt="Flowing Soft Logo">
+                <a href="#home" id="home-link">Home</a>
+                <a href="#about" id="about-link">About Us</a>
+                <a href="#contact" id="contact-link">Contact</a>
+            </div>
+            <div class="language-buttons">
+                <button onclick="switchLanguage('en')">English</button>
+                <button onclick="switchLanguage('pt')">Português</button>
+            </div>
+        </nav>
+    </header>
+    
+    <section id="home" class="section">
+        <div class="content-container" style="flex-direction: row;">
+            <div class="text">
+                <h1 id="title">AI-Powered Consulting & Training</h1>
+                <p id="description">Flowing Soft provides training and consulting services to help individuals and companies leverage AI to improve software quality, reduce development time, and enhance software documentation. Our approach ensures that teams can effectively utilize AI tools to boost productivity and efficiency.</p>
+            </div>
+            <div class="image-container">
+                <img src="team_image.png" alt="Our Team">
+            </div>
+        </div>
+    </section>
+    <div id="services-parallax" class="parallax"></div>
+    <section id="about" class="section">
+        <div class="content-container" style="flex-direction: column; align-items: center; text-align: center;">
+            <div class="text">
+                
+        <h2 id="about-title">About Flowing Soft</h2>
+        <p id="about-description">Flowing Soft is dedicated to empowering individuals and organizations to improve software quality and reduce development time through effective AI utilization. Our mission is to provide expert guidance and tailored training programs to help teams leverage AI for better software documentation and faster development. Unlike generic training providers, we focus on practical usage, ensuring that AI tools are effectively utilized to solve real challenges and deliver tangible results. Our consulting services are customized to fit your unique business needs, ensuring you get maximum value from AI-driven improvements.</p>
+    
+            </div>
+        </div>
+    </section>
+    <section id="contact" class="section">
+        <div class="content-container" style="flex-direction: column; align-items: center; text-align: center;">
+            <div class="text">
+                
+        <h2 id="contact-title">Contact Flowing Soft</h2>
+        <p id="contact-description">Let us guide you through the future of software development. Get in touch:</p>
+        <ul id="contact-list">
+            <li>Email: <a href="mailto:contact@flowingsoft.com" style="color: #fff;">contact@flowingsoft.com</a></li>
+            <li>Phone: +1 (913) 526-7898</li>
+        </ul>
+    
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p>Contact us at: <a href="mailto:contact@flowingsoft.com" style="color: #fff;">contact@flowingsoft.com</a> | Phone: +1 (913) 526-7898</p>
+    </footer>
+    <script>
+        const translations = {
+            en: {
+                title: "AI-Powered Consulting & Training",
+                description: "Flowing Soft provides consulting and training services to help individuals and companies leverage AI to improve software quality, accelerate development time, and enhance software documentation. Our approach ensures effective utilization of AI tools to boost productivity and efficiency.",
+                aboutTitle: "About Flowing Soft",
+                aboutDescription: "Flowing Soft is dedicated to empowering individuals and organizations to achieve rapid and efficient software delivery through AI. Our mission is to provide expert guidance and tailored training programs that help teams seamlessly integrate AI into their software development processes. Unlike generic training providers, we focus on practical implementation, making sure that AI tools and practices are effectively utilized to solve real challenges and accelerate growth. Our consulting services are customized to fit your unique business needs, ensuring you get maximum value from AI-driven transformations.",
+                contactTitle: "Contact Flowing Soft",
+                contactDescription: "Let us guide you through the future of software development. Get in touch:",
+                contactList: [
+                    "Email: contact@flowingsoft.com",
+                    "Phone: +1 (913) 526-7898"
+                ],
+                menu: {
+                    home: "Home",
+                    about: "About Us",
+                    contact: "Contact"
+                }
+            },
+            pt: {
+                title: "Consultoria e Treinamento Impulsionados por IA",
+                description: "A Flowing Soft apoia pessoas e empresas na entrega de software mais rápida usando IA. Fornecemos consultoria e treinamento personalizados para ajudar as equipes a utilizar soluções de IA de forma eficaz. Nossa abordagem melhora a produtividade e a eficiência, permitindo que você se mantenha à frente no competitivo mercado de software.",
+                aboutTitle: "Sobre a Flowing Soft",
+                aboutDescription: "A Flowing Soft se dedica a capacitar indivíduos e organizações para alcançar uma entrega de software rápida e eficiente por meio da IA. Nossa missão é fornecer orientação especializada e programas de treinamento personalizados que ajudem as equipes a usar a IA para agilizar e melhorar o desenvolvimento de software. Diferente de provedores de treinamento genéricos, focamos no ensino prático, garantindo que as ferramentas e práticas de IA sejam efetivamente utilizadas para agilizar e melhorar o desenvolvimento de software. Nossos serviços de consultoria são personalizados para atender às suas necessidades de negócios, garantindo que você obtenha o máximo valor das transformações impulsionadas por IA.",
+                contactTitle: "Contate a Flowing Soft",
+                contactDescription: "Deixe-nos guiá-lo pelo futuro do desenvolvimento de software. Entre em contato:",
+                contactList: [
+                    "Email: contact@flowingsoft.com",
+                    "Telefone: +1 (913) 526-7898"
+                ],
+                menu: {
+                    home: "Início",
+                    about: "Sobre Nós",
+                    contact: "Contato"
+                }
+            }
+        };
+
+        function switchLanguage(lang) {
+            if (translations[lang]) {
+                document.getElementById('home-link').innerText = translations[lang].menu.home;
+                document.getElementById('about-link').innerText = translations[lang].menu.about;
+                document.getElementById('contact-link').innerText = translations[lang].menu.contact;
+                document.getElementById('title').innerText = translations[lang].title;
+                document.getElementById('description').innerText = translations[lang].description;
+                document.getElementById('about-title').innerText = translations[lang].aboutTitle;
+                document.getElementById('about-description').innerText = translations[lang].aboutDescription;
+                document.getElementById('contact-title').innerText = translations[lang].contactTitle;
+                document.getElementById('contact-description').innerText = translations[lang].contactDescription;
+                const contactList = document.getElementById('contact-list');
+                if (contactList) {
+                    contactList.innerHTML = '';
+                    translations[lang].contactList.forEach(contact => {
+                        const li = document.createElement('li');
+                        li.innerText = contact;
+                        contactList.appendChild(li);
+                    });
+                }
+            }
+        }
+
+        // Set default language based on browser's language and start at home section
+        window.onload = function() {
+            window.scrollTo(0, 0); // Ensure the page starts at the top
+            const userLang = navigator.language || navigator.userLanguage;
+            if (userLang.startsWith('pt')) {
+                switchLanguage('pt');
+            } else {
+                switchLanguage('en');
+            }
+        };
+    </script>
+</body>
+</html>
