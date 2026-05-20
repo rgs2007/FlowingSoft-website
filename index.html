@@ -3,334 +3,767 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flowing Soft - AI-Powered Consulting & Training Services</title>
+    <title>Flowing Soft - Minimal Products and Practical AI Services</title>
+    <meta name="description" content="Flowing Soft builds calm digital products like The Minimal Flow and helps small businesses and individuals use AI in practical, trustworthy ways.">
     <style>
-        body {
-            font-family: 'Roboto', Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            line-height: 1.75;
+        :root {
+            --ink: #101214;
+            --muted: #5b5b55;
+            --paper: #f5f0e6;
+            --paper-soft: #fffaf0;
+            --white: #ffffff;
+            --sage: #6f7868;
+            --sage-dark: #4b5548;
+            --plum: #3c3347;
+            --clay: #b56f45;
+            --line: rgba(16, 18, 20, 0.14);
+            --shadow: 0 24px 70px rgba(16, 18, 20, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
             scroll-behavior: smooth;
-            padding-top: 70px;
         }
-        header {
-            background-color: #003399;
-            color: #fff;
-            padding: 15px;
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-            top: 0;
+
+        body {
+            margin: 0;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at 12% 8%, rgba(111, 120, 104, 0.16), transparent 24rem),
+                linear-gradient(180deg, var(--paper) 0%, #fbf7ee 46%, #f7f1e6 100%);
+            font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
-        header nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        header nav a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 10px;
-            font-weight: 500;
-            text-transform: uppercase;
-            font-size: 1em;
-        }
-        header nav .language-buttons {
-            display: flex;
-            gap: 5px;
-        }
-        header nav button {
-            background-color: #fff;
-            color: #003399;
-            border: none;
-            padding: 8px;
-            cursor: pointer;
-            font-weight: 500;
-            font-size: 0.9em;
-        }
-        .hero-section {
-            background: url('images/hero_background.jpg') center/cover no-repeat;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            text-align: center;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .hero-section h1 {
-            font-size: 3.5em;
-            margin-bottom: 20px;
-            line-height: 1.3;
-        }
-        .hero-section .cta-button {
-            padding: 15px 30px;
-            background-color: #ff9900;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            font-size: 1.1em;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-        .section {
-            min-height: 70vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 50px 20px;
-            margin: 20px 0;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .section h1, .section h2 {
-            font-size: 2.5em;
-            margin: 20px 0;
-            line-height: 1.4;
-        }
-        .section p {
-            font-size: 1.1em;
-            max-width: 750px;
-            margin-bottom: 20px;
-            line-height: 1.8;
-        }
-        .services-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            padding: 40px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .service-card {
-            background: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            padding: 25px;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-        .service-card:hover {
-            transform: translateY(-5px);
-        }
-        .service-card img {
+
+        img {
             max-width: 100%;
-            height: auto;
-            margin-bottom: 15px;
-            border-radius: 5px;
+            display: block;
         }
-        #about {
-            background: linear-gradient(to bottom, #f4f4f4, #fff);
+
+        a {
+            color: inherit;
         }
-        #contact {
-            background-color: #003399;
-            color: #fff;
-            padding: 50px 20px;
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 1px solid rgba(16, 18, 20, 0.08);
+            background: rgba(245, 240, 230, 0.88);
+            backdrop-filter: blur(18px);
         }
-        .parallax {
-            background-attachment: fixed;
-            background-size: cover;
-            background-position: center;
-            height: 60vh;
-        }
-        #services-parallax {
-            background-image: url('images/services_image.png');
-        }
-        .image-container {
-            width: 100%;
-            max-width: 550px;
-            margin: 20px;
-        }
-        .image-container img {
-            width: 100%;
-            height: auto;
-            border-radius: 5px;
-        }
-        .content-container {
+
+        .nav {
+            width: min(100%, 1180px);
+            margin: 0 auto;
+            padding: 16px 24px;
             display: flex;
-            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            font-weight: 800;
+            letter-spacing: 0;
+        }
+
+        .brand img {
+            width: 38px;
+            height: 38px;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .nav-links a {
+            padding: 10px 12px;
+            border-radius: 999px;
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .nav-links a:hover {
+            color: var(--ink);
+            background: rgba(16, 18, 20, 0.06);
+        }
+
+        main {
+            min-height: 100vh;
+        }
+
+        .section {
+            padding: 90px 24px;
+        }
+
+        .inner {
+            width: min(100%, 1180px);
+            margin: 0 auto;
+        }
+
+        .hero {
+            min-height: calc(100vh - 72px);
+            display: grid;
+            align-items: center;
+            padding: 56px 24px 70px;
+        }
+
+        .hero-grid {
+            width: min(100%, 1180px);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: minmax(0, 0.88fr) minmax(360px, 1.12fr);
+            gap: 54px;
+            align-items: center;
+        }
+
+        .hero-grid > *,
+        .product-showcase > *,
+        .approach > *,
+        .section-heading > * {
+            min-width: 0;
+        }
+
+        .eyebrow {
+            margin: 0 0 18px;
+            color: var(--sage-dark);
+            font-size: 0.82rem;
+            font-weight: 900;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        h1,
+        h2,
+        h3,
+        p {
+            margin-top: 0;
+        }
+
+        h1 {
+            max-width: 11ch;
+            margin-bottom: 24px;
+            font-size: clamp(4rem, 8.2vw, 7.2rem);
+            line-height: 0.92;
+            letter-spacing: 0;
+            font-weight: 900;
+            overflow-wrap: break-word;
+        }
+
+        .hero-copy {
+            max-width: 650px;
+            color: #242623;
+            font-size: clamp(1.1rem, 1.7vw, 1.35rem);
+            line-height: 1.55;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-top: 34px;
+        }
+
+        .button {
+            display: inline-flex;
             align-items: center;
             justify-content: center;
+            min-height: 46px;
+            padding: 12px 18px;
+            border-radius: 999px;
+            border: 1px solid var(--ink);
+            background: var(--ink);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 800;
+        }
+
+        .button.secondary {
+            background: transparent;
+            color: var(--ink);
+        }
+
+        .hero-visual {
+            position: relative;
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        .product-frame {
+            overflow: hidden;
+            width: 100%;
+            max-width: 100%;
+            border: 1px solid rgba(16, 18, 20, 0.16);
+            border-radius: 8px;
+            background: var(--paper-soft);
+            box-shadow: var(--shadow);
+        }
+
+        .product-frame img {
+            width: 100%;
+            aspect-ratio: 1024 / 500;
+            object-fit: cover;
+        }
+
+        .quiet-note {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 14px;
+            align-items: start;
+            max-width: 420px;
+            margin: 22px 0 0 auto;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .note-mark {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--sage);
+        }
+
+        .section-heading {
+            display: grid;
+            grid-template-columns: minmax(0, 0.8fr) minmax(280px, 0.7fr);
             gap: 40px;
-            flex-wrap: wrap;
+            align-items: end;
+            margin-bottom: 38px;
         }
-        .content-container .text {
-            max-width: 600px;
+
+        .section-heading h2 {
+            margin-bottom: 0;
+            font-size: clamp(2.3rem, 4.8vw, 4.7rem);
+            line-height: 0.98;
+            font-weight: 900;
         }
+
+        .section-heading p {
+            margin-bottom: 0;
+            color: var(--muted);
+            font-size: 1.08rem;
+        }
+
+        .product-showcase {
+            display: grid;
+            grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.72fr);
+            gap: 30px;
+            align-items: stretch;
+        }
+
+        .product-panel,
+        .service-card,
+        .proof-card,
+        .contact-panel {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: rgba(255, 250, 240, 0.76);
+            box-shadow: 0 12px 34px rgba(16, 18, 20, 0.06);
+        }
+
+        .product-panel {
+            overflow: hidden;
+        }
+
+        .product-panel img {
+            width: 100%;
+            aspect-ratio: 1024 / 500;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 28px;
+        }
+
+        .product-info h3,
+        .service-card h3,
+        .proof-card h3 {
+            font-size: 1.35rem;
+            line-height: 1.18;
+            margin-bottom: 12px;
+        }
+
+        .product-info p,
+        .service-card p,
+        .proof-card p {
+            color: var(--muted);
+            margin-bottom: 0;
+        }
+
+        .product-facts {
+            display: grid;
+            gap: 16px;
+        }
+
+        .fact {
+            min-height: 132px;
+            padding: 22px;
+            border-radius: 8px;
+            color: var(--white);
+        }
+
+        .fact:nth-child(1) {
+            background: var(--sage);
+        }
+
+        .fact:nth-child(2) {
+            background: var(--plum);
+        }
+
+        .fact:nth-child(3) {
+            background: var(--ink);
+        }
+
+        .fact strong {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .fact span {
+            display: block;
+            color: rgba(255, 255, 255, 0.78);
+        }
+
+        .services {
+            background: var(--ink);
+            color: var(--white);
+        }
+
+        .services .eyebrow,
+        .services .section-heading p {
+            color: rgba(255, 255, 255, 0.68);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .service-card {
+            min-height: 280px;
+            padding: 26px;
+            background: #191b1d;
+            border-color: rgba(255, 255, 255, 0.12);
+            box-shadow: none;
+        }
+
+        .service-card p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .service-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            margin-bottom: 34px;
+            border-radius: 50%;
+            background: var(--paper);
+            color: var(--ink);
+            font-weight: 900;
+        }
+
+        .service-card:nth-child(2) .service-number {
+            background: var(--sage);
+            color: var(--white);
+        }
+
+        .service-card:nth-child(3) .service-number {
+            background: var(--clay);
+            color: var(--white);
+        }
+
+        .proof-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .proof-card {
+            min-height: 215px;
+            padding: 24px;
+        }
+
+        .proof-card h3 {
+            color: var(--sage-dark);
+        }
+
+        .approach {
+            display: grid;
+            grid-template-columns: minmax(280px, 0.85fr) minmax(0, 1fr);
+            gap: 44px;
+            align-items: start;
+        }
+
+        .steps {
+            display: grid;
+            gap: 16px;
+            counter-reset: steps;
+        }
+
+        .step {
+            position: relative;
+            padding: 22px 22px 22px 72px;
+            border-top: 1px solid var(--line);
+            counter-increment: steps;
+        }
+
+        .step::before {
+            content: counter(steps, decimal-leading-zero);
+            position: absolute;
+            left: 0;
+            top: 22px;
+            color: var(--clay);
+            font-weight: 900;
+        }
+
+        .step h3 {
+            margin-bottom: 8px;
+            font-size: 1.12rem;
+        }
+
+        .step p {
+            margin-bottom: 0;
+            color: var(--muted);
+        }
+
+        .contact {
+            padding-bottom: 110px;
+        }
+
+        .contact-panel {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 26px;
+            align-items: center;
+            padding: 34px;
+            background: var(--sage-dark);
+            color: var(--white);
+        }
+
+        .contact-panel h2 {
+            margin-bottom: 8px;
+            font-size: clamp(2rem, 4vw, 4rem);
+            line-height: 1;
+        }
+
+        .contact-panel p {
+            max-width: 700px;
+            margin-bottom: 0;
+            color: rgba(255, 255, 255, 0.76);
+            font-size: 1.08rem;
+        }
+
+        .contact-panel .button {
+            border-color: var(--paper);
+            background: var(--paper);
+            color: var(--ink);
+            white-space: nowrap;
+        }
+
         footer {
-            background-color: #333;
-            color: #fff;
+            border-top: 1px solid var(--line);
+            padding: 28px 24px;
+            color: var(--muted);
             text-align: center;
-            padding: 20px;
-            font-size: 0.9em;
-            margin-top: 20px;
+            font-size: 0.95rem;
         }
-        header img {
-            height: 40px;
-            margin-right: 10px;
+
+        @media (max-width: 920px) {
+            .hero {
+                min-height: auto;
+            }
+
+            .hero-grid,
+            .section-heading,
+            .product-showcase,
+            .approach,
+            .contact-panel {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid,
+            .proof-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .quiet-note {
+                margin-left: 0;
+            }
         }
-        @media (max-width: 1024px) {
-            .section h1, .section h2 {
-                font-size: 2.2em;
-            }
-            .section p {
-                font-size: 1em;
-            }
-            .content-container {
+
+        @media (max-width: 640px) {
+            .nav {
+                align-items: flex-start;
                 flex-direction: column;
-                text-align: center;
+                padding: 14px 18px;
             }
-        }
-        @media (max-width: 768px) {
-            header nav a {
-                font-size: 0.9em;
+
+            .nav-links {
+                justify-content: flex-start;
             }
-            .section h1, .section h2 {
-                font-size: 1.8em;
+
+            .nav-links a {
+                padding: 8px 9px;
+                font-size: 0.88rem;
             }
-            .section p {
-                font-size: 0.95em;
+
+            .section {
+                padding: 68px 18px;
             }
-            header nav {
-                flex-direction: column;
-                text-align: center;
+
+            .hero {
+                padding: 42px 18px 56px;
             }
-            header nav button {
-                padding: 5px;
+
+            h1 {
+                max-width: 9ch;
+                font-size: clamp(2.9rem, 15vw, 3.25rem);
+            }
+
+            .hero-grid {
+                gap: 34px;
+                width: calc(100vw - 36px);
+            }
+
+            .hero-copy,
+            .quiet-note,
+            .section-heading p {
+                max-width: calc(100vw - 36px);
+                font-size: 1rem;
+                overflow-wrap: break-word;
+            }
+
+            .product-frame img,
+            .product-panel img {
+                height: auto;
+                object-fit: contain;
+            }
+
+            .section-heading h2 {
+                font-size: clamp(2rem, 10vw, 2.55rem);
+                overflow-wrap: break-word;
+            }
+
+            .services-grid,
+            .proof-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card,
+            .proof-card,
+            .product-info,
+            .contact-panel {
+                padding: 22px;
+            }
+
+            .contact-panel .button {
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div>
-                <img src="flowing_soft_logo.png" alt="Flowing Soft Logo">
-                <a href="#home" id="home-link">Home</a>
-                <a href="#about" id="about-link">About Us</a>
-                <a href="#contact" id="contact-link">Contact</a>
-            </div>
-            <div class="language-buttons">
-                <button onclick="switchLanguage('en')">English</button>
-                <button onclick="switchLanguage('pt')">Português</button>
+    <header class="site-header">
+        <nav class="nav" aria-label="Main navigation">
+            <a class="brand" href="#home" aria-label="Flowing Soft home">
+                <img src="flowing_soft_logo.png" alt="">
+                <span>flowingsoft</span>
+            </a>
+            <div class="nav-links">
+                <a href="#products">Products</a>
+                <a href="#services">Services</a>
+                <a href="#approach">Approach</a>
+                <a href="#contact">Contact</a>
             </div>
         </nav>
     </header>
-    
-    <section id="home" class="section">
-        <div class="content-container" style="flex-direction: row;">
-            <div class="text">
-                <h1 id="title">AI-Powered Consulting & Training</h1>
-                <p id="description">Flowing Soft provides training and consulting services to help individuals and companies leverage AI to improve software quality, reduce development time, and enhance software documentation. Our approach ensures that teams can effectively utilize AI tools to boost productivity and efficiency.</p>
+
+    <main id="home">
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-grid">
+                <div>
+                    <p class="eyebrow">Products and practical AI help</p>
+                    <h1 id="hero-title">Calm tools for focused work.</h1>
+                    <p class="hero-copy">Flowing Soft builds minimal digital products and helps small businesses, families, and independent professionals use AI without the hype, confusion, or generic output.</p>
+                    <div class="hero-actions">
+                        <a class="button" href="#products">View Products</a>
+                        <a class="button secondary" href="#services">Explore Services</a>
+                    </div>
+                </div>
+                <div class="hero-visual" aria-label="The Minimal Flow product preview">
+                    <div class="product-frame">
+                        <img src="assets/minimal-flow-feature-graphic.png" alt="The Minimal Flow Wear OS watch face product artwork">
+                    </div>
+                    <div class="quiet-note">
+                        <span class="note-mark" aria-hidden="true"></span>
+                        <p>The Minimal Flow sets the tone: readable, restrained, useful, and designed around real moments of attention.</p>
+                    </div>
+                </div>
             </div>
-            <div class="image-container">
-                <img src="team_image.png" alt="Our Team">
+        </section>
+
+        <section class="section" id="products">
+            <div class="inner">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">Products</p>
+                        <h2>Small software with a quiet point of view.</h2>
+                    </div>
+                    <p>Flowing Soft products are built for people who want technology to support their routines, not take over the room.</p>
+                </div>
+
+                <div class="product-showcase">
+                    <article class="product-panel">
+                        <img src="assets/minimal-flow-feature-graphic.png" alt="Three watches showing The Minimal Flow watch face">
+                        <div class="product-info">
+                            <h3>The Minimal Flow</h3>
+                            <p>A minimal Wear OS watch face by Flowing Soft. It turns the watch into a calm prompt for the next meaningful block of time, with simple text, strong contrast, and a focused visual rhythm.</p>
+                        </div>
+                    </article>
+
+                    <div class="product-facts" aria-label="The Minimal Flow product qualities">
+                        <div class="fact">
+                            <strong>Made for attention</strong>
+                            <span>Glanceable task text and time, without visual clutter.</span>
+                        </div>
+                        <div class="fact">
+                            <strong>Minimal by design</strong>
+                            <span>Neutral surfaces, bold type, and intentional color moments.</span>
+                        </div>
+                        <div class="fact">
+                            <strong>Privacy aware</strong>
+                            <span>No analytics, advertising, tracking SDKs, or third-party data collection.</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
-    <div id="services-parallax" class="parallax"></div>
-    <section id="about" class="section">
-        <div class="content-container" style="flex-direction: column; align-items: center; text-align: center;">
-            <div class="text">
-                
-        <h2 id="about-title">About Flowing Soft</h2>
-        <p id="about-description">Flowing Soft is dedicated to empowering individuals and organizations to improve software quality and reduce development time through effective AI utilization. Our mission is to provide expert guidance and tailored training programs to help teams leverage AI for better software documentation and faster development. Unlike generic training providers, we focus on practical usage, ensuring that AI tools are effectively utilized to solve real challenges and deliver tangible results. Our consulting services are customized to fit your unique business needs, ensuring you get maximum value from AI-driven improvements.</p>
-    
+        </section>
+
+        <section class="section services" id="services">
+            <div class="inner">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">Services</p>
+                        <h2>AI support for people who have actual work to do.</h2>
+                    </div>
+                    <p>Most people do not need another dashboard. They need help deciding where AI fits, what to trust, and how to turn messy daily work into repeatable support.</p>
+                </div>
+
+                <div class="services-grid">
+                    <article class="service-card">
+                        <span class="service-number">1</span>
+                        <h3>AI workflow setup</h3>
+                        <p>We map the repetitive work that already eats your week, then create practical AI routines for email, notes, follow-ups, proposals, content drafts, and planning.</p>
+                    </article>
+                    <article class="service-card">
+                        <span class="service-number">2</span>
+                        <h3>Small business enablement</h3>
+                        <p>For owners and teams who feel told to "just use AI," we build a clear starting point, a simple tool stack, and workflows that match how the business already runs.</p>
+                    </article>
+                    <article class="service-card">
+                        <span class="service-number">3</span>
+                        <h3>Personal AI coaching</h3>
+                        <p>For individuals who want better help at home or work, we teach prompting, verification, privacy judgment, and useful habits without turning it into a technical course.</p>
+                    </article>
+                </div>
             </div>
-        </div>
-    </section>
-    <section id="contact" class="section">
-        <div class="content-container" style="flex-direction: column; align-items: center; text-align: center;">
-            <div class="text">
-                
-        <h2 id="contact-title">Contact Flowing Soft</h2>
-        <p id="contact-description">Let us guide you through the future of software development. Get in touch:</p>
-        <ul id="contact-list">
-            <li>Email: <a href="mailto:flowingsoft@flowingsoft.com" style="color: #fff;">flowingsoft@flowingsoft.com</a></li>
-        </ul>
-    
+        </section>
+
+        <section class="section" aria-labelledby="real-struggles-title">
+            <div class="inner">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">Real struggles</p>
+                        <h2 id="real-struggles-title">The hard part is rarely the model.</h2>
+                    </div>
+                    <p>The service focus comes from common non-technical pain points people describe online when they try to use AI in real life.</p>
+                </div>
+
+                <div class="proof-grid">
+                    <article class="proof-card">
+                        <h3>"I do not know where to start."</h3>
+                        <p>People see dozens of tools and examples, but no clear first workflow for their own situation.</p>
+                    </article>
+                    <article class="proof-card">
+                        <h3>"It sounds generic."</h3>
+                        <p>AI drafts are fast, but often need rewriting because they miss the voice, customer, or real context.</p>
+                    </article>
+                    <article class="proof-card">
+                        <h3>"Can I trust this?"</h3>
+                        <p>Confident wrong answers make people unsure when to use AI, when to verify, and when to stop.</p>
+                    </article>
+                    <article class="proof-card">
+                        <h3>"Nothing connects."</h3>
+                        <p>The work lives across email, calendars, notes, spreadsheets, and messages, so AI help has to fit the existing flow.</p>
+                    </article>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <section class="section" id="approach">
+            <div class="inner approach">
+                <div>
+                    <p class="eyebrow">Approach</p>
+                    <h2>Start small. Make it useful. Keep the human in charge.</h2>
+                </div>
+
+                <div class="steps">
+                    <article class="step">
+                        <h3>Find one painful process</h3>
+                        <p>We choose a specific workflow with visible value, such as responding to leads, summarizing calls, organizing ideas, or drafting client updates.</p>
+                    </article>
+                    <article class="step">
+                        <h3>Build the prompt and review loop</h3>
+                        <p>We create reusable instructions, examples, and checks so the output sounds like you and can be trusted for its job.</p>
+                    </article>
+                    <article class="step">
+                        <h3>Fit it into everyday tools</h3>
+                        <p>The best AI system is often the one that works inside the tools people already open every day.</p>
+                    </article>
+                    <article class="step">
+                        <h3>Teach the habit</h3>
+                        <p>We leave you with simple routines, not dependency. The goal is confidence, better judgment, and saved time.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section contact" id="contact">
+            <div class="inner">
+                <div class="contact-panel">
+                    <div>
+                        <h2>Bring a product idea or a messy workflow.</h2>
+                        <p>Flowing Soft can help shape focused products and practical AI support for the way you actually live and work.</p>
+                    </div>
+                    <a class="button" href="mailto:flowingsoft@flowingsoft.com">flowingsoft@flowingsoft.com</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
     <footer>
-        <p>Contact us at: <a href="mailto:flowingsoft@flowingsoft.com" style="color: #fff;">flowingsoft@flowingsoft.com</a></p>
+        <p>Flowing Soft builds products and services for calmer, more capable digital work.</p>
     </footer>
-    <script>
-        const translations = {
-            en: {
-                title: "AI-Powered Consulting & Training",
-                description: "Flowing Soft provides consulting and training services to help individuals and companies leverage AI to improve software quality, accelerate development time, and enhance software documentation. Our approach ensures effective utilization of AI tools to boost productivity and efficiency.",
-                aboutTitle: "About Flowing Soft",
-                aboutDescription: "Flowing Soft is dedicated to empowering individuals and organizations to achieve rapid and efficient software delivery through AI. Our mission is to provide expert guidance and tailored training programs that help teams seamlessly integrate AI into their software development processes. Unlike generic training providers, we focus on practical implementation, making sure that AI tools and practices are effectively utilized to solve real challenges and accelerate growth. Our consulting services are customized to fit your unique business needs, ensuring you get maximum value from AI-driven transformations.",
-                contactTitle: "Contact Flowing Soft",
-                contactDescription: "Let us guide you through the future of software development. Get in touch:",
-                contactList: [
-                    "Email: flowingsoft@flowingsoft.com"
-                ],
-                menu: {
-                    home: "Home",
-                    about: "About Us",
-                    contact: "Contact"
-                }
-            },
-            pt: {
-                title: "Consultoria e Treinamento Impulsionados por IA",
-                description: "A Flowing Soft apoia pessoas e empresas na entrega de software mais rápida usando IA. Fornecemos consultoria e treinamento personalizados para ajudar as equipes a utilizar soluções de IA de forma eficaz. Nossa abordagem melhora a produtividade e a eficiência, permitindo que você se mantenha à frente no competitivo mercado de software.",
-                aboutTitle: "Sobre a Flowing Soft",
-                aboutDescription: "A Flowing Soft se dedica a capacitar indivíduos e organizações para alcançar uma entrega de software rápida e eficiente por meio da IA. Nossa missão é fornecer orientação especializada e programas de treinamento personalizados que ajudem as equipes a usar a IA para agilizar e melhorar o desenvolvimento de software. Diferente de provedores de treinamento genéricos, focamos no ensino prático, garantindo que as ferramentas e práticas de IA sejam efetivamente utilizadas para agilizar e melhorar o desenvolvimento de software. Nossos serviços de consultoria são personalizados para atender às suas necessidades de negócios, garantindo que você obtenha o máximo valor das transformações impulsionadas por IA.",
-                contactTitle: "Contate a Flowing Soft",
-                contactDescription: "Deixe-nos guiá-lo pelo futuro do desenvolvimento de software. Entre em contato:",
-                contactList: [
-                    "Email: flowingsoft@flowingsoft.com"
-                ],
-                menu: {
-                    home: "Início",
-                    about: "Sobre Nós",
-                    contact: "Contato"
-                }
-            }
-        };
-
-        function switchLanguage(lang) {
-            if (translations[lang]) {
-                document.getElementById('home-link').innerText = translations[lang].menu.home;
-                document.getElementById('about-link').innerText = translations[lang].menu.about;
-                document.getElementById('contact-link').innerText = translations[lang].menu.contact;
-                document.getElementById('title').innerText = translations[lang].title;
-                document.getElementById('description').innerText = translations[lang].description;
-                document.getElementById('about-title').innerText = translations[lang].aboutTitle;
-                document.getElementById('about-description').innerText = translations[lang].aboutDescription;
-                document.getElementById('contact-title').innerText = translations[lang].contactTitle;
-                document.getElementById('contact-description').innerText = translations[lang].contactDescription;
-                const contactList = document.getElementById('contact-list');
-                if (contactList) {
-                    contactList.innerHTML = '';
-                    translations[lang].contactList.forEach(contact => {
-                        const li = document.createElement('li');
-                        li.innerText = contact;
-                        contactList.appendChild(li);
-                    });
-                }
-            }
-        }
-
-        // Set default language based on browser's language and start at home section
-        window.onload = function() {
-            window.scrollTo(0, 0); // Ensure the page starts at the top
-            const userLang = navigator.language || navigator.userLanguage;
-            if (userLang.startsWith('pt')) {
-                switchLanguage('pt');
-            } else {
-                switchLanguage('en');
-            }
-        };
-    </script>
 </body>
 </html>
