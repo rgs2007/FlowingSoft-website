@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flowing Soft - Minimal Products and Practical AI Services</title>
-    <meta name="description" content="Flowing Soft builds calm digital products like The Minimal Flow and helps small businesses and individuals use AI in practical, trustworthy ways.">
+    <title>Flowing Soft - Practical AI Services for Small Business</title>
+    <meta name="description" content="Flowing Soft helps small businesses and individuals turn AI into practical workflows, then builds product experiments that show the method in action.">
     <style>
         :root {
             --ink: #101214;
@@ -268,6 +268,65 @@
             align-items: stretch;
         }
 
+        .product-carousel {
+            display: grid;
+            gap: 18px;
+        }
+
+        .carousel-shell {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.35s ease;
+        }
+
+        .carousel-slide {
+            flex: 0 0 100%;
+            min-width: 0;
+        }
+
+        .carousel-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .carousel-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .icon-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--ink);
+            border-radius: 50%;
+            background: transparent;
+            color: var(--ink);
+            cursor: pointer;
+            font: inherit;
+            font-size: 1.45rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .icon-button:disabled {
+            cursor: not-allowed;
+            opacity: 0.35;
+        }
+
+        .carousel-count {
+            color: var(--muted);
+            font-weight: 800;
+        }
+
         .product-panel,
         .service-card,
         .proof-card,
@@ -292,6 +351,14 @@
             padding: 28px;
         }
 
+        .product-category {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--muted);
+            font-size: 0.9rem;
+            font-weight: 800;
+        }
+
         .product-info h3,
         .service-card h3,
         .proof-card h3 {
@@ -305,6 +372,90 @@
         .proof-card p {
             color: var(--muted);
             margin-bottom: 0;
+        }
+
+        .product-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+            padding: 8px 11px;
+            border-radius: 999px;
+            background: rgba(111, 120, 104, 0.14);
+            color: var(--sage-dark);
+            font-size: 0.82rem;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .product-status::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--sage);
+        }
+
+        .launch-panel {
+            margin-top: 24px;
+            padding: 22px;
+            border: 1px solid rgba(16, 18, 20, 0.12);
+            border-radius: 8px;
+            background: var(--white);
+        }
+
+        .launch-panel h4 {
+            margin: 0 0 8px;
+            font-size: 1.05rem;
+            line-height: 1.25;
+        }
+
+        .launch-panel p {
+            margin-bottom: 16px;
+        }
+
+        .launch-form {
+            display: grid;
+            gap: 12px;
+        }
+
+        .field-group {
+            display: grid;
+            gap: 6px;
+        }
+
+        .field-group label {
+            color: var(--muted);
+            font-size: 0.82rem;
+            font-weight: 800;
+        }
+
+        .field-group input {
+            width: 100%;
+            min-height: 44px;
+            border: 1px solid rgba(16, 18, 20, 0.18);
+            border-radius: 8px;
+            background: var(--paper-soft);
+            color: var(--ink);
+            font: inherit;
+            padding: 10px 12px;
+        }
+
+        .field-group input:focus {
+            outline: 3px solid rgba(111, 120, 104, 0.24);
+            border-color: var(--sage);
+        }
+
+        .launch-form .button {
+            min-height: 42px;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        .launch-note {
+            color: var(--muted);
+            font-size: 0.92rem;
         }
 
         .product-facts {
@@ -577,6 +728,10 @@
                 padding: 22px;
             }
 
+            .launch-form .button {
+                width: 100%;
+            }
+
             .contact-panel .button {
                 width: 100%;
             }
@@ -591,8 +746,8 @@
                 <span>flowingsoft</span>
             </a>
             <div class="nav-links">
-                <a href="#products">Products</a>
                 <a href="#services">Services</a>
+                <a href="#products">Product Lab</a>
                 <a href="#approach">Approach</a>
                 <a href="#contact">Contact</a>
             </div>
@@ -603,12 +758,12 @@
         <section class="hero" aria-labelledby="hero-title">
             <div class="hero-grid">
                 <div>
-                    <p class="eyebrow">Products and practical AI help</p>
-                    <h1 id="hero-title">Calm tools for focused work.</h1>
-                    <p class="hero-copy">Flowing Soft builds minimal digital products and helps small businesses, families, and independent professionals use AI without the hype, confusion, or generic output.</p>
+                    <p class="eyebrow">Practical AI services</p>
+                    <h1 id="hero-title">AI that fits real work.</h1>
+                    <p class="hero-copy">Flowing Soft helps small businesses, families, and independent professionals turn new AI capabilities into useful everyday workflows. Our product experiments show the same method in action.</p>
                     <div class="hero-actions">
-                        <a class="button" href="#products">View Products</a>
-                        <a class="button secondary" href="#services">Explore Services</a>
+                        <a class="button" href="#services">Explore Services</a>
+                        <a class="button secondary" href="#products">View Product Lab</a>
                     </div>
                 </div>
                 <div class="hero-visual" aria-label="The Minimal Flow product preview">
@@ -617,44 +772,7 @@
                     </div>
                     <div class="quiet-note">
                         <span class="note-mark" aria-hidden="true"></span>
-                        <p>The Minimal Flow sets the tone: readable, restrained, useful, and designed around real moments of attention.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section" id="products">
-            <div class="inner">
-                <div class="section-heading">
-                    <div>
-                        <p class="eyebrow">Products</p>
-                        <h2>Small software with a quiet point of view.</h2>
-                    </div>
-                    <p>Flowing Soft products are built for people who want technology to support their routines, not take over the room.</p>
-                </div>
-
-                <div class="product-showcase">
-                    <article class="product-panel">
-                        <img src="assets/minimal-flow-feature-graphic.png" alt="Three watches showing The Minimal Flow watch face">
-                        <div class="product-info">
-                            <h3>The Minimal Flow</h3>
-                            <p>A minimal Wear OS watch face by Flowing Soft. It turns the watch into a calm prompt for the next meaningful block of time, with simple text, strong contrast, and a focused visual rhythm.</p>
-                        </div>
-                    </article>
-
-                    <div class="product-facts" aria-label="The Minimal Flow product qualities">
-                        <div class="fact">
-                            <strong>Made for attention</strong>
-                            <span>Glanceable task text and time, without visual clutter.</span>
-                        </div>
-                        <div class="fact">
-                            <strong>Minimal by design</strong>
-                            <span>Neutral surfaces, bold type, and intentional color moments.</span>
-                        </div>
-                        <div class="fact">
-                            <strong>Privacy aware</strong>
-                            <span>No analytics, advertising, tracking SDKs, or third-party data collection.</span>
-                        </div>
+                        <p>The Minimal Flow is an internal product experiment: a focused result of the same AI-assisted product thinking we bring to client work.</p>
                     </div>
                 </div>
             </div>
@@ -686,6 +804,64 @@
                         <h3>Personal AI coaching</h3>
                         <p>For individuals who want better help at home or work, we teach prompting, verification, privacy judgment, and useful habits without turning it into a technical course.</p>
                     </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="products">
+            <div class="inner">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">Product Lab</p>
+                        <h2>Product experiments that prove the service.</h2>
+                    </div>
+                    <p>Flowing Soft products are results of the same process we use in our services: notice a real-life workflow, shape a small solution, build a launch page, and test whether people want it before overbuilding.</p>
+                </div>
+
+                <div class="product-carousel" aria-label="Flowing Soft product lab carousel">
+                    <div class="carousel-shell">
+                        <div class="carousel-track" id="product-carousel-track">
+                            <div class="carousel-slide">
+                                <div class="product-showcase">
+                                    <article class="product-panel">
+                                        <img src="assets/minimal-flow-feature-graphic.png" alt="Three watches showing The Minimal Flow watch face">
+                                        <div class="product-info">
+                                            <span class="product-status">Private testing soon</span>
+                                            <span class="product-category">Wear OS watch face</span>
+                                            <h3>The Minimal Flow</h3>
+                                            <p>A minimal Wear OS watch face by Flowing Soft, currently preparing for tester access and launch. It is an example of our AI-assisted product practice: focused concept, practical design, quick launch page, and early interest capture.</p>
+                                            <div class="hero-actions">
+                                                <a class="button" href="products/the-minimalist-flow-watchface/">Open launch page</a>
+                                                <a class="button secondary" href="products/the-minimalist-flow-watchface/#interest">Show interest</a>
+                                            </div>
+                                        </div>
+                                    </article>
+
+                                    <div class="product-facts" aria-label="The Minimal Flow product qualities">
+                                        <div class="fact">
+                                            <strong>Discovery turned into software</strong>
+                                            <span>A concrete response to attention, routine, and focus problems.</span>
+                                        </div>
+                                        <div class="fact">
+                                            <strong>Launch before overbuilding</strong>
+                                            <span>A dedicated page collects interest before public release.</span>
+                                        </div>
+                                        <div class="fact">
+                                            <strong>Reusable playbook</strong>
+                                            <span>Future product ideas can use the same launch-page structure.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-controls">
+                        <span class="carousel-count" id="product-carousel-count">1 / 1</span>
+                        <div class="carousel-buttons">
+                            <button class="icon-button" id="product-carousel-prev" type="button" aria-label="Previous product">‹</button>
+                            <button class="icon-button" id="product-carousel-next" type="button" aria-label="Next product">›</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -753,8 +929,8 @@
             <div class="inner">
                 <div class="contact-panel">
                     <div>
-                        <h2>Bring a product idea or a messy workflow.</h2>
-                        <p>Flowing Soft can help shape focused products and practical AI support for the way you actually live and work.</p>
+                        <h2>Bring a messy workflow or a product idea.</h2>
+                        <p>Flowing Soft can help turn new AI capabilities into practical routines, prototypes, launch pages, and small tools that test real demand.</p>
                     </div>
                     <a class="button" href="mailto:flowingsoft@flowingsoft.com">flowingsoft@flowingsoft.com</a>
                 </div>
@@ -763,7 +939,82 @@
     </main>
 
     <footer>
-        <p>Flowing Soft builds products and services for calmer, more capable digital work.</p>
+        <p>Flowing Soft provides practical AI services and builds product experiments from that work.</p>
     </footer>
+    <script src="assets/product-lab-items.js"></script>
+    <script>
+        const productItems = window.PRODUCT_LAB_ITEMS || [];
+        const carouselTrack = document.getElementById("product-carousel-track");
+        const carouselCount = document.getElementById("product-carousel-count");
+        const carouselPrev = document.getElementById("product-carousel-prev");
+        const carouselNext = document.getElementById("product-carousel-next");
+        let currentProductIndex = 0;
+
+        function escapeHtml(value) {
+            return String(value)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        function renderProductSlide(product) {
+            const proofPoints = product.proofPoints.map((point) => `
+                <div class="fact">
+                    <strong>${escapeHtml(point.title)}</strong>
+                    <span>${escapeHtml(point.text)}</span>
+                </div>
+            `).join("");
+
+            return `
+                <div class="carousel-slide">
+                    <div class="product-showcase">
+                        <article class="product-panel">
+                            <img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.imageAlt)}">
+                            <div class="product-info">
+                                <span class="product-status">${escapeHtml(product.status)}</span>
+                                <span class="product-category">${escapeHtml(product.category)}</span>
+                                <h3>${escapeHtml(product.name)}</h3>
+                                <p>${escapeHtml(product.description)}</p>
+                                <div class="hero-actions">
+                                    <a class="button" href="${escapeHtml(product.launchUrl)}">Open launch page</a>
+                                    <a class="button secondary" href="${escapeHtml(product.interestUrl)}">Show interest</a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <div class="product-facts" aria-label="${escapeHtml(product.name)} product qualities">
+                            ${proofPoints}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function updateCarousel() {
+            if (!carouselTrack || productItems.length === 0) {
+                return;
+            }
+
+            carouselTrack.style.transform = `translateX(-${currentProductIndex * 100}%)`;
+            carouselCount.textContent = `${currentProductIndex + 1} / ${productItems.length}`;
+            carouselPrev.disabled = productItems.length < 2;
+            carouselNext.disabled = productItems.length < 2;
+        }
+
+        if (carouselTrack && productItems.length > 0) {
+            carouselTrack.innerHTML = productItems.map(renderProductSlide).join("");
+            carouselPrev.addEventListener("click", () => {
+                currentProductIndex = (currentProductIndex - 1 + productItems.length) % productItems.length;
+                updateCarousel();
+            });
+            carouselNext.addEventListener("click", () => {
+                currentProductIndex = (currentProductIndex + 1) % productItems.length;
+                updateCarousel();
+            });
+            updateCarousel();
+        }
+    </script>
 </body>
 </html>
