@@ -53,6 +53,11 @@ the user explicitly asks for that larger architecture change.
   private testing / launch preparation.
 - Avoid promising availability, downloads, app-store status, or features that do
   not exist yet.
+- PDF Region Extractor (`products/pdf-region-extractor/`) and FDP (Fodinha)
+  (`products/fdp-fodinha/`) are live, free browser apps hosted on GitHub Pages
+  from their own repos (`rgs2007/pdf-data-extraction`, `rgs2007/fdp`). Their
+  launch pages link straight to the app, and their forms collect updates and
+  feedback rather than tester signups.
 
 ## Product Lab Architecture
 
