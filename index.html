@@ -233,6 +233,98 @@
             font-size: 0.95rem;
         }
 
+        /* Hero product showcase: slides share one grid cell and crossfade. */
+        .hero-stage {
+            display: grid;
+        }
+
+        .hero-slide {
+            grid-area: 1 / 1;
+            display: block;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s;
+        }
+
+        .hero-slide.is-active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .hero-slide:focus-visible {
+            outline: 3px solid var(--sage);
+            outline-offset: -3px;
+        }
+
+        .hero-showcase-bar {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 18px;
+            margin-top: 22px;
+        }
+
+        .hero-showcase-bar .quiet-note {
+            margin: 0;
+        }
+
+        .quiet-note p {
+            margin: 0;
+        }
+
+        .quiet-note strong {
+            color: var(--ink);
+        }
+
+        .quiet-note a {
+            font-weight: 800;
+            color: var(--ink);
+        }
+
+        .hero-showcase-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .hero-dots {
+            display: flex;
+            gap: 6px;
+            margin-right: 4px;
+        }
+
+        .hero-dot {
+            width: 12px;
+            height: 12px;
+            padding: 0;
+            border: 1px solid var(--ink);
+            border-radius: 50%;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .hero-dot[aria-current="true"] {
+            background: var(--ink);
+        }
+
+        .icon-button.small {
+            width: 36px;
+            height: 36px;
+            font-size: 1.15rem;
+        }
+
+        #hero-showcase-pause {
+            font-size: 0.7rem;
+            letter-spacing: 0;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-slide {
+                transition: none;
+            }
+        }
+
         .note-mark {
             width: 30px;
             height: 30px;
@@ -661,6 +753,10 @@
             .quiet-note {
                 margin-left: 0;
             }
+
+            .hero-showcase-bar {
+                flex-direction: column;
+            }
         }
 
         @media (max-width: 640px) {
@@ -766,15 +862,26 @@
                         <a class="button secondary" href="#products">View Product Lab</a>
                     </div>
                 </div>
-                <div class="hero-visual" aria-label="The Minimal Flow product preview">
-                    <div class="product-frame">
-                        <img src="assets/minimal-flow-feature-graphic.png" alt="The Minimal Flow Wear OS watch face product artwork">
+                <!-- Static Minimal Flow markup is the no-JS fallback; the script replaces it with every Product Lab item. -->
+                <section class="hero-visual" id="hero-showcase" aria-roledescription="carousel" aria-label="Flowing Soft products">
+                    <div class="product-frame hero-stage" id="hero-showcase-stage">
+                        <a class="hero-slide is-active" href="products/the-minimalist-flow-watchface/">
+                            <img src="assets/minimal-flow-feature-graphic.png" alt="The Minimal Flow Wear OS watch face product artwork">
+                        </a>
                     </div>
-                    <div class="quiet-note">
-                        <span class="note-mark" aria-hidden="true"></span>
-                        <p>The Minimal Flow is an internal product experiment: a focused result of the same AI-assisted product thinking we bring to client work.</p>
+                    <div class="hero-showcase-bar">
+                        <div class="quiet-note" id="hero-showcase-caption" aria-live="polite">
+                            <span class="note-mark" aria-hidden="true"></span>
+                            <p>The Minimal Flow is an internal product experiment: a focused result of the same AI-assisted product thinking we bring to client work.</p>
+                        </div>
+                        <div class="hero-showcase-controls" id="hero-showcase-controls" hidden>
+                            <div class="hero-dots" id="hero-showcase-dots"></div>
+                            <button class="icon-button small" id="hero-showcase-prev" type="button" aria-label="Previous product">‹</button>
+                            <button class="icon-button small" id="hero-showcase-next" type="button" aria-label="Next product">›</button>
+                            <button class="icon-button small" id="hero-showcase-pause" type="button" aria-label="Pause product rotation" aria-pressed="false">❚❚</button>
+                        </div>
                     </div>
-                </div>
+                </section>
             </div>
         </section>
 
@@ -1015,6 +1122,114 @@
             });
             updateCarousel();
         }
+
+        const HERO_ROTATION_MS = 6000;
+        const heroShowcase = document.getElementById("hero-showcase");
+        const heroStage = document.getElementById("hero-showcase-stage");
+        const heroCaption = document.getElementById("hero-showcase-caption");
+        const heroControls = document.getElementById("hero-showcase-controls");
+        const heroDots = document.getElementById("hero-showcase-dots");
+        const heroPrev = document.getElementById("hero-showcase-prev");
+        const heroNext = document.getElementById("hero-showcase-next");
+        const heroPause = document.getElementById("hero-showcase-pause");
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        let heroIndex = 0;
+        let heroTimer = null;
+        let heroPausedByUser = prefersReducedMotion;
+
+        function renderHeroSlide(product, index) {
+            return `
+                <a class="hero-slide" href="${escapeHtml(product.launchUrl)}" aria-roledescription="slide"
+                   aria-label="${index + 1} of ${productItems.length}: ${escapeHtml(product.name)}">
+                    <img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.imageAlt)}">
+                </a>
+            `;
+        }
+
+        function renderHeroDot(product, index) {
+            return `<button class="hero-dot" type="button" data-index="${index}" aria-label="Show ${escapeHtml(product.name)}"></button>`;
+        }
+
+        function renderHeroCaption(product) {
+            return `
+                <span class="note-mark" aria-hidden="true"></span>
+                <p><strong>${escapeHtml(product.name)}</strong> · ${escapeHtml(product.category)}. ${escapeHtml(product.status)}.
+                <a href="${escapeHtml(product.launchUrl)}">See the product</a></p>
+            `;
+        }
+
+        function showHeroSlide(index) {
+            heroIndex = (index + productItems.length) % productItems.length;
+            heroStage.querySelectorAll(".hero-slide").forEach((slide, slideIndex) => {
+                const isActive = slideIndex === heroIndex;
+                slide.classList.toggle("is-active", isActive);
+                slide.tabIndex = isActive ? 0 : -1;
+                slide.setAttribute("aria-hidden", String(!isActive));
+            });
+            heroDots.querySelectorAll(".hero-dot").forEach((dot, dotIndex) => {
+                dot.setAttribute("aria-current", String(dotIndex === heroIndex));
+            });
+            heroCaption.innerHTML = renderHeroCaption(productItems[heroIndex]);
+        }
+
+        function stopHeroRotation() {
+            clearInterval(heroTimer);
+            heroTimer = null;
+        }
+
+        function startHeroRotation() {
+            stopHeroRotation();
+            if (!heroPausedByUser) {
+                heroTimer = setInterval(() => showHeroSlide(heroIndex + 1), HERO_ROTATION_MS);
+            }
+        }
+
+        function updateHeroPauseButton() {
+            heroPause.setAttribute("aria-pressed", String(heroPausedByUser));
+            heroPause.setAttribute("aria-label", heroPausedByUser ? "Resume product rotation" : "Pause product rotation");
+            heroPause.textContent = heroPausedByUser ? "▶" : "❚❚";
+        }
+
+        function initHeroShowcase() {
+            if (!heroStage || productItems.length < 2) {
+                return;
+            }
+
+            heroStage.innerHTML = productItems.map(renderHeroSlide).join("");
+            heroDots.innerHTML = productItems.map(renderHeroDot).join("");
+            heroControls.hidden = false;
+
+            heroPrev.addEventListener("click", () => { showHeroSlide(heroIndex - 1); startHeroRotation(); });
+            heroNext.addEventListener("click", () => { showHeroSlide(heroIndex + 1); startHeroRotation(); });
+            heroDots.addEventListener("click", (event) => {
+                const dot = event.target.closest(".hero-dot");
+                if (dot) {
+                    showHeroSlide(Number(dot.dataset.index));
+                    startHeroRotation();
+                }
+            });
+            heroPause.addEventListener("click", () => {
+                heroPausedByUser = !heroPausedByUser;
+                updateHeroPauseButton();
+                startHeroRotation();
+            });
+
+            // Hold still while someone is pointing at or tabbing through the showcase.
+            heroShowcase.addEventListener("mouseenter", stopHeroRotation);
+            heroShowcase.addEventListener("mouseleave", startHeroRotation);
+            heroShowcase.addEventListener("focusin", stopHeroRotation);
+            heroShowcase.addEventListener("focusout", (event) => {
+                if (!heroShowcase.contains(event.relatedTarget)) {
+                    startHeroRotation();
+                }
+            });
+
+            showHeroSlide(0);
+            updateHeroPauseButton();
+            startHeroRotation();
+        }
+
+        initHeroShowcase();
     </script>
 </body>
 </html>

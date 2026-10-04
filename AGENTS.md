@@ -65,6 +65,12 @@ The homepage Product Lab carousel is data-driven. Add or edit product tiles in
 `assets/product-lab-items.js`, not by duplicating carousel markup in
 `index.html`.
 
+The homepage hero showcase reads the same data: it rotates through every item's
+`image`, with a caption built from `name`, `category`, `status` and `launchUrl`.
+It auto-advances every 6 seconds (`HERO_ROTATION_MS`), pauses on hover or
+focus, has a pause button, and stays still for `prefers-reduced-motion`. The
+static Minimal Flow markup in the hero is only the no-JavaScript fallback.
+
 Each product item should include:
 
 - `name`: Product name shown on the tile.
