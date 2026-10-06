@@ -77,7 +77,7 @@ window.PRODUCT_LAB_ITEMS = [
         category: "Binaural beats and focus sounds",
         image: "assets/brain-tuning-sounds-screenshot.jpg",
         imageAlt: "Brain Tuning Sounds player set to a 10 Hz alpha beat with pink noise",
-        description: "Binaural beats with white, pink or brown noise, built around the frequencies researchers actually tested. It reflects how we work with clients: check the claims against the evidence, explain the limits plainly, and ship a simple tool people can start using in seconds.",
+        description: "Binaural beats layered under soft noise or surf, built around the frequencies researchers actually tested. It reflects how we work with clients: check the claims against the evidence, explain the limits plainly, and ship a simple tool people can start using in seconds.",
         launchUrl: "products/brain-tuning-sounds/",
         interestUrl: "products/brain-tuning-sounds/#interest",
         proofPoints: [
