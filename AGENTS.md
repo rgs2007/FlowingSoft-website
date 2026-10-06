@@ -187,7 +187,11 @@ confirmation unless the form backend changes.
 
 ## Testing
 
-Before committing visible site changes:
+**Test on every change.** Run the checks below after every change, before committing, and do
+not commit or push while any check fails. This includes small copy, data and style edits.
+When JavaScript behavior is added or changed, add or update a test for it in the same change.
+
+Before committing any site change:
 
 - Run a local static server from the repository root.
 - Verify `http://127.0.0.1:4173/` returns status 200.
@@ -200,7 +204,11 @@ Before committing visible site changes:
 - For visual homepage changes, check desktop and mobile layouts with browser
   screenshots when practical.
 
-No automated test runner exists yet. If JavaScript behavior grows beyond simple
+Product apps hosted in their own repos have their own test suites and the same rule applies
+there. Brain Tuning Sounds (`rgs2007/brain-tunning-sounds`) requires `npm test` to pass on every
+change; see that repo's `AGENTS.md`.
+
+No automated test runner exists for this site yet. If JavaScript behavior grows beyond simple
 carousel wiring, add lightweight browser-based tests before adding a build
 pipeline.
 
