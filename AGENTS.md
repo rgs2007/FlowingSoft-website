@@ -55,9 +55,13 @@ the user explicitly asks for that larger architecture change.
   not exist yet.
 - PDF Region Extractor (`products/pdf-region-extractor/`) and FDP (Fodinha)
   (`products/fdp-fodinha/`) are live, free browser apps hosted on GitHub Pages
-  from their own repos (`rgs2007/pdf-data-extraction`, `rgs2007/fdp`). Their
+  from their own repos (`rgs2007/pdf-data-extraction`, `rgs2007/fdp`). Brain
+  Tuning Sounds (`products/brain-tuning-sounds/`) is also live, hosted from
+  `rgs2007/brain-tunning-sounds` (the repo name keeps its original spelling). Their
   launch pages link straight to the app, and their forms collect updates and
   feedback rather than tester signups.
+- Brain Tuning Sounds copy must stay honest about the evidence: binaural beat
+  research is mixed, so do not promise health, sleep, or cognitive outcomes.
 
 ## Product Lab Architecture
 

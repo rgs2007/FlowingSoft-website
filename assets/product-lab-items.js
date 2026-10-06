@@ -70,5 +70,29 @@ window.PRODUCT_LAB_ITEMS = [
                 text: "Opens in any browser, phone or desktop, with nothing to install."
             }
         ]
+    },
+    {
+        name: "Brain Tuning Sounds",
+        status: "Free in your browser",
+        category: "Binaural beats and focus sounds",
+        image: "assets/brain-tuning-sounds-screenshot.jpg",
+        imageAlt: "Brain Tuning Sounds player set to a 10 Hz alpha beat with pink noise",
+        description: "Binaural beats with white, pink or brown noise, built around the frequencies researchers actually tested. It reflects how we work with clients: check the claims against the evidence, explain the limits plainly, and ship a simple tool people can start using in seconds.",
+        launchUrl: "products/brain-tuning-sounds/",
+        interestUrl: "products/brain-tuning-sounds/#interest",
+        proofPoints: [
+            {
+                title: "Claims checked first",
+                text: "Presets follow published studies, with the evidence level shown."
+            },
+            {
+                title: "Simple by default",
+                text: "Five common settings up front, basic tuning only when wanted."
+            },
+            {
+                title: "Private by design",
+                text: "All sound is generated on the device. Nothing is uploaded."
+            }
+        ]
     }
 ];
