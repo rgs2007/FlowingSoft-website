@@ -37,6 +37,11 @@ the user explicitly asks for that larger architecture change.
   page for The Minimal Flow.
 - `thanks.html` is the shared thank-you page used after interest form
   submissions.
+- `assets/analytics.js` loads Google Analytics 4 for every page. The GA4
+  measurement ID lives only in its `GA_MEASUREMENT_ID` constant; when empty,
+  nothing is tracked. Every new page must include this script in its `<head>`
+  (with the correct relative path, `defer`). Interest-form submissions send a
+  `generate_lead` event with only `product_name`, never personal data.
 - `CNAME` configures the custom GitHub Pages domain.
 - `.github/workflows/pages.yml` owns GitHub Pages deployment.
 
